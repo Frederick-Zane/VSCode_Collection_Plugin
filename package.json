@@ -1,0 +1,80 @@
+{
+  "name": "favorite-file-launcher",
+  "displayName": "Favorite File Launcher",
+  "description": "Pin frequently used files and folders in a VS Code sidebar view.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:favoriteFileLauncherView"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "favoriteFileLauncher",
+          "title": "Favorites",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "favoriteFileLauncher": [
+        {
+          "id": "favoriteFileLauncherView",
+          "name": "Favorite Files"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "favoriteFileLauncher.addFile",
+        "title": "Add Files"
+      },
+      {
+        "command": "favoriteFileLauncher.addCurrentFile",
+        "title": "Add Current File"
+      },
+      {
+        "command": "favoriteFileLauncher.addFolder",
+        "title": "Add Folders"
+      },
+      {
+        "command": "favoriteFileLauncher.refresh",
+        "title": "Refresh Favorites"
+      },
+      {
+        "command": "favoriteFileLauncher.removeItem",
+        "title": "Remove Favorite"
+      },
+      {
+        "command": "favoriteFileLauncher.openItem",
+        "title": "Open Favorite"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "favoriteFileLauncher.removeItem",
+          "when": "view == favoriteFileLauncherView && (viewItem == favoriteFileLauncher.file || viewItem == favoriteFileLauncher.folder)",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.5"
+  }
+}
