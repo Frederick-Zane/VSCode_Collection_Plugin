@@ -3,3 +3,4 @@ out/
 *.vsix
 develop.md
 .vscode
+.gitignore
